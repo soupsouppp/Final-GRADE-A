@@ -79,7 +79,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             
             if (thisItem.type == "pistol")
             {
-                ShowTooltip("A pistol the school guards carry. \n(Damage: 15)");
+                ShowTooltip("A pistol that belongs to the school secruity guards. \n(Damage: 15)");
             }
 
             if (thisItem.type == "water")
@@ -97,6 +97,11 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             if (thisItem.type == "heal")
             {
                 ShowTooltip("Medical Syringe, mostly found in school nurse office and supply rooms. \n(HP +20)");
+            }
+
+            if (thisItem.type == "rottenBurger")
+            {
+                ShowTooltip("A rotten burger, looks like someone left it here for a while. \n(HP -20) \n(Food -20)");
             }
         }
     }
@@ -142,11 +147,30 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 Destroy(item);
             }
 
+            if (thisItem.type == "juice")
+            {
+                PlayerStats playerStats = player.GetComponent<PlayerStats>();
+                playerStats.Drink(thisItem.waterUpvalue);
+                playerStats.Eat(thisItem.foodUpvalue);
+                Destroy(item);
+            }
+
+
+
             //FOOD
             if (thisItem.type == "food")
             {
                 PlayerStats playerStats = player.GetComponent<PlayerStats>();
-                playerStats.Drink(thisItem.foodUpvalue);
+                playerStats.Eat(thisItem.foodUpvalue);
+
+                Destroy(item);
+            }
+
+            if (thisItem.type == "rottenBurger")
+            {
+                PlayerStats playerStats = player.GetComponent<PlayerStats>();
+                playerStats.Eat(thisItem.foodUpvalue);
+                playerStats.dmg(thisItem.dmgPoints);
 
                 Destroy(item);
             }

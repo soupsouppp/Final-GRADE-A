@@ -25,6 +25,8 @@ public class Item : MonoBehaviour
     //food
     public float foodUpvalue;
     public float HPUpValue;
+    public float dmgPoints;
+
 
     void Start()
     {

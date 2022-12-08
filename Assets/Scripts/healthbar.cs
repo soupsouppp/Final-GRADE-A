@@ -30,10 +30,12 @@ public class healthbar : MonoBehaviour
         lerpSpeed = 3f * Time.deltaTime;
 
         fillHP();
-        colorChange();
-
         fillWater();
         fillFood();
+
+        colorChange();
+
+        
 
         PlayerStats playerStat = player.GetComponent<PlayerStats>();
         //healthbar
