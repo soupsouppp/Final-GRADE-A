@@ -99,10 +99,27 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 ShowTooltip("Medical Syringe, mostly found in school nurse office and supply rooms. \n(HP +20)");
             }
 
+            if (thisItem.type == "healPill")
+            {
+                ShowTooltip("Painkillers. Will kill some pain but does not help so much. \n(HP +10)");
+            }
+
+
             if (thisItem.type == "rottenBurger")
             {
                 ShowTooltip("A rotten burger, looks like someone left it here for a while. \n(HP -20) \n(Food -20)");
             }
+
+            if (thisItem.type == "energyBar")
+            {
+                ShowTooltip("Energy bar, relieves a bit of hunger. \n(Food +10)");
+            }
+
+            if (thisItem.type == "meal")
+            {
+                ShowTooltip("Frozen meal from the cafeteria, good quality. Relieves a lot of hunger. \n(Food +20)");
+            }
+
         }
     }
 
@@ -175,6 +192,17 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 Destroy(item);
             }
 
+            if (thisItem.type == "energyBar")
+            {
+                PlayerStats playerStats = player.GetComponent<PlayerStats>();
+                playerStats.Eat(thisItem.foodUpvalue);
+                
+
+                Destroy(item);
+            }
+
+
+
             //WEAPONS
             if (thisItem.type == "pistol")
             {
@@ -199,6 +227,15 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
                 Destroy(item);
             }
+
+            if (thisItem.type == "healPill")
+            {
+                PlayerStats playerStats = player.GetComponent<PlayerStats>();
+                playerStats.Heal(thisItem.HPUpValue);
+
+                Destroy(item);
+            }
+
         }
     }
 }
