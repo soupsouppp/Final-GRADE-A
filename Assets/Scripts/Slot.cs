@@ -79,7 +79,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             
             if (thisItem.type == "pistol")
             {
-                ShowTooltip("A pistol that belongs to the school secruity guards. \n(Damage: 15)");
+                ShowTooltip("A pistol that belongs to the school secruity guards. \n Hold left click to shoot. \n(Damage: 15)");
             }
 
             if (thisItem.type == "water")
